@@ -4,6 +4,8 @@ package "bikallem/js_exn_mbt/dom"
 // Values
 pub fn add_event_listener_options(capture? : Bool, passive? : Bool, once? : Bool, signal? : AbortSignal) -> AddEventListenerOptions
 
+pub fn add_to_array(Array[String], String) -> Unit
+
 pub fn default_add_event_listener_options() -> AddEventListenerOptions
 
 pub fn default_event_listener_options() -> EventListenerOptions
@@ -11,6 +13,8 @@ pub fn default_event_listener_options() -> EventListenerOptions
 pub let document : Document
 
 pub fn event_listener_options(capture? : Bool) -> EventListenerOptions
+
+pub fn[T] new_array() -> Array[T]
 
 pub fn remove_event_listener_ffi(JsValue, String, EventListener, JsValue) -> Unit
 

@@ -1,5 +1,14 @@
 ///|
 fn main {
+  // array ffi 
+  let ar = @dom.new_array()
+  @dom.add_to_array(ar, "Hello")
+  @dom.add_to_array(ar, "from")
+  @dom.add_to_array(ar, "MBT")
+  println("Array length: \{ar.length()}")
+  for i in 0..<ar.length() {
+    println("ar[\{i}] = \{ar[i]}")
+  }
   let button = HTMLButtonElement::new("Click me!")
   let event_handler = EventListener::new(_ => println("Button clicked!"))
   button.add_event_listener("click", event_handler)

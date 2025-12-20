@@ -7,13 +7,11 @@ pub impl TJsValue for EventListener with to_js(self : EventListener) -> JsValue 
 
 ///|
 #cfg(target="wasm-gc")
-fn EventListener::event_listener_new_ffi(
-  callback : (Event) -> Unit,
-) -> EventListener = "webapi_EventListener" "new"
+fn event_listener_new_ffi(callback : (Event) -> Unit) -> EventListener = "webapi_EventListener" "new"
 
 ///|
 #cfg(target="js")
-extern "js" fn EventListener::event_listener_new_ffi(
+extern "js" fn event_listener_new_ffi(
   callback : (Event) -> Unit,
 ) -> EventListener =
   #| (callback) => callback
@@ -21,7 +19,7 @@ extern "js" fn EventListener::event_listener_new_ffi(
 ///|
 #as_free_fn(event_listener)
 pub fn EventListener::new(callback : (Event) -> Unit) -> EventListener {
-  EventListener::event_listener_new_ffi(callback)
+  event_listener_new_ffi(callback)
 }
 
 ///|

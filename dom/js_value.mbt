@@ -43,3 +43,20 @@ pub fn[T] JsValue::null() -> T {
 
 ///|
 pub impl TJsValue for Bool with to_js(self : Bool) -> JsValue = "%identity"
+
+// Array FFI
+
+///|
+#cfg(target="js")
+extern "js" fn new_array_ffi() -> JsValue =
+  #| () => []
+
+///|
+pub fn[T] new_array() -> Array[T] {
+  cast(new_array_ffi())
+}
+
+///|
+#cfg(target="js")
+pub extern "js" fn add_to_array(ar : Array[String], val : String) -> Unit =
+  #| (ar, val) => ar.push(val)
