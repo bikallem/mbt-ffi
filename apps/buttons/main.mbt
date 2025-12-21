@@ -1,7 +1,7 @@
 ///|
 fn main {
   // array ffi 
-  let ar = @dom.new_array()
+  let ar : Array[String] = @dom.new_array()
   @dom.add_to_array(ar, "Hello")
   @dom.add_to_array(ar, "from")
   @dom.add_to_array(ar, "MBT")
