@@ -13,4 +13,4 @@ logs
 node_modules
 dist
 
-apps/target
+_build
