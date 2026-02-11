@@ -47,32 +47,29 @@ pub impl TJsValue for Bool with to_js(self : Bool) -> JsValue = "%identity"
 // Array FFI
 
 ///|
-#cfg(target="wasm-gc")
-fn new_array_ffi() -> JsValue = "JsArray" "new"
-
-///|
 #cfg(target="js")
 extern "js" fn new_array_ffi() -> JsValue =
   #| () => []
 
 ///|
+#cfg(target="js")
 pub fn[T] new_array() -> Array[T] {
   cast(new_array_ffi())
 }
 
 ///|
 #cfg(target="wasm-gc")
-fn add_to_array_ffi(ar : JsValue, val : String) -> Unit = "JsArray" "push"
+pub fn[T] new_array() -> Array[T] {
+  []
+}
 
 ///|
 #cfg(target="js")
-extern "js" fn add_to_array_ffi(ar : JsValue, val : String) -> Unit =
+pub extern "js" fn add_to_array(ar : Array[String], val : String) -> Unit =
   #| (ar, val) => ar.push(val)
 
 ///|
-fn[T] cast_to(value : T) -> JsValue = "%identity"
-
-///|
+#cfg(target="wasm-gc")
 pub fn add_to_array(ar : Array[String], val : String) -> Unit {
-  add_to_array_ffi(cast_to(ar), val)
+  ar.push(val)
 }
