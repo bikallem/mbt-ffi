@@ -65,8 +65,12 @@ pub fn[T] new_array() -> Array[T] {
 
 ///|
 #cfg(target="js")
-pub extern "js" fn add_to_array(ar : Array[String], val : String) -> Unit =
+pub extern "js" fn add_to_array_ffi(ar : FixedArray[String], val : String) -> Unit =
   #| (ar, val) => ar.push(val)
+
+pub fn add_to_array(ar : Array[String], val : String) -> Unit {
+  add_to_array_ffi(FixedArray::from_array(ar), val)
+}
 
 ///|
 #cfg(target="wasm-gc")
